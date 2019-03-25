@@ -25,10 +25,10 @@ namespace MedioClinic.Controllers.Widgets
             CustomTableWidgetProperties properties = GetProperties();
 
 
-            // Creates a new model and sets its value
+            // Initializes a the view model and sets its value
             var model = new CustomTableViewModel
             {
-                Items = new List<CustomTableItem>(),
+                Items = new List<WidgetTableItem>(),
                 ColumnNames = new List<string>()
             };
 
@@ -49,7 +49,7 @@ namespace MedioClinic.Controllers.Widgets
                     // Prepare the object query
                     var query = CustomTableItemProvider.GetItems(properties.CustomTableCodeName);
 
-
+                    var customTableItems = new List<CustomTableItem>();
                     // Check if the user input something in the Column property
                     if (!String.IsNullOrWhiteSpace(properties.ColumnNames))
                     {
@@ -57,7 +57,7 @@ namespace MedioClinic.Controllers.Widgets
                         try
                         {
                             // Calls the query with the input Column names
-                            model.Items = query.Columns(properties.ColumnNames).ToList();
+                            customTableItems = query.Columns(properties.ColumnNames).ToList();
                             model.ColumnNames = properties.ColumnNames.Split(',').ToList();
                         }
                         catch (Exception e)
@@ -68,15 +68,30 @@ namespace MedioClinic.Controllers.Widgets
                     }
                     else
                     {
-                        model.Items =  query.ToList();
-
+                        customTableItems = query.ToList();           
                         // If there is at least 1 item in the custom table, we retrieve the ColumnNames
-                        if (model.Items.Count > 0)
+                        if (customTableItems.Count > 0)
                         {
-                            model.ColumnNames = model.Items.First().ColumnNames;
+                            model.ColumnNames = customTableItems.First().ColumnNames;
                         }
                     }
-                    
+                    foreach(CustomTableItem item in customTableItems)
+                    {
+                        List<string> values = new List<string>();
+
+                        foreach(string column in model.ColumnNames) 
+                        {
+                            var value = item.GetValue(column.Trim());
+                            values.Add(value == null ? "" : value.ToString());
+                            
+                        }
+
+                        model.Items.Add(new WidgetTableItem
+                        {
+                            ColumnValues = values
+                        }); 
+                    }
+
                 } else
                 {
                     model.ErrorMessage = "Looks like the selected table does not exist";

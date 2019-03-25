@@ -9,11 +9,10 @@ namespace MEDIOClinic.Models.Widgets.CustomTableWidget
     public class CustomTableViewModel
     {
         public string CustomTableName { get; set; }
-        public List<CustomTableItem> Items { get; set; }
+        // public List<CustomTableItem> Items { get; set; }
         public List<string> ColumnNames { get; set; }
         public string ErrorMessage { get; set; }
-
-        public List<WidgetTableItem> Itemss { get; set; }
+        public List<WidgetTableItem> Items { get; set; }
     }
 
 
