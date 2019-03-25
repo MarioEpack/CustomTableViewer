@@ -1,0 +1,34 @@
+﻿.City {
+    font-size: 24px;
+    font-style: oblique;
+    }
+
+.Temp {
+    color: red;
+    font-size: 24px;
+}
+
+.MinMax {
+    font-size: 14px;
+    margin-left: 60px;
+}
+
+#Max {
+    color: red;
+}
+
+#Min {
+    color: blue;
+}
+
+.Stats {
+    font-size: 14px;
+}
+
+.WeatherAboveZero {
+    color: red;
+}
+
+.WeatherBelowZero {
+    color: blue;
+}

@@ -1,0 +1,15 @@
+﻿@using Kentico.Forms.Web.Mvc
+
+
+@model MedioClinic.Models.FormComponents.UnitsSelectorComponent
+
+
+
+@foreach (var item in Model.Items)
+{
+<label>@Html.RadioButtonFor(x => x.SelectedValue, item.Value) @item.Text</label> 
+}
+
+
+
+

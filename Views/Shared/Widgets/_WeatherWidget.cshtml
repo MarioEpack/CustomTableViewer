@@ -1,0 +1,27 @@
+﻿@using MedioClinic.Models.Widgets.WeatherWidget
+@model WeatherWidgetViewModel
+
+
+@if (Model.IsCitySelected)
+{
+    <div class="City">
+        <p>@Model.City</p>
+    </div>
+    <div class="Temp @((Model.Temp) >= 0 ? "WeatherAboveZero" : "WeatherBelowZero")"> 
+        <img src="http://openweathermap.org/img/w/@Model.Weather_Icon" alt="Weather icon"> <b>@Model.Temp@Model.Unit_Type</b>
+    </div>
+
+    <div class="MinMax">
+        <span id="Max">@Model.Temp_max@Model.Unit_Type</span> / <span id="Min">@Model.Temp_min@Model.Unit_Type</span>
+    </div>
+
+    <div class="Stats">
+        <div>@Model.Humidity</div>
+        <div>@Model.Pressure</div>
+    </div>
+
+}
+else
+{
+    @Model.Error_msg
+}

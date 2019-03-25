@@ -1,0 +1,18 @@
+﻿@model MEDIOClinic.Models.MedicalCenterViewModel
+
+@{
+    ViewBag.Title = Model.DocumentName;
+}
+
+<section class="teaser">
+    <div class="col-sm-offset-3 col-sm-4">
+        <p>@Model.MedicalCenterHeader</p>
+    </div>
+    <div class="clearfix"></div>
+</section>
+<section class="content">
+    <div class="col-sm-offset-3 col-sm-5">
+        @Html.Kentico().ResolveUrls(Model.MedicalCenterText)
+    </div>
+    <div class="clearfix"></div>
+</section>

@@ -1,0 +1,35 @@
+﻿@model MEDIOClinic.Models.HomeViewModel
+@using Kentico.Web.Mvc
+@using Kentico.PageBuilder.Web.Mvc
+
+@{
+    ViewBag.Title = Model.DocumentName;
+}
+
+@section styles
+{
+    @* Includes stylesheets necessary for page builder functionality *@
+    @Html.Kentico().PageBuilderStyles()
+}
+
+@section scripts
+{
+    @* Includes scripts necessary for page builder functionality *@
+    @Html.Kentico().PageBuilderScripts()
+}
+
+<section class="teaser">
+    <div class="col-sm-offset-3 col-sm-4">
+        <p>@Model.HomeHeader </p>
+    </div>
+    <div class="clearfix"></div>
+</section>
+<section class="content">
+    <div class="col-sm-offset-3 col-sm-5">
+        <h1>@Model.HomeTextHeading</h1>
+        <p>@Model.HomeText</p>
+        @* Inserts a page builder editable area, allowing modular content composition using widgets *@
+        @Html.Kentico().EditableArea("editableArea")
+    </div>
+    <div class="clearfix"></div>
+</section>
